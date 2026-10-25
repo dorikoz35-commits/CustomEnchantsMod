@@ -1,0 +1,57 @@
+name: Build
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  legacy:
+    name: legacy (${{ matrix.mc }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # jar берём из сборки против самой низкой версии,
+          # вторая сборка только проверяет, что код компилируется на верхней
+          - { mc: "1.21",    api: "0.102.0+1.21",    upload: true }
+          - { mc: "1.21.11", api: "0.141.1+1.21.11", upload: false }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 9.5.1
+      - run: gradle -p legacy build -Pminecraft_version=${{ matrix.mc }} -Pfabric_api_version=${{ matrix.api }}
+      - if: ${{ matrix.upload }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: customenchants-mc1.21-1.21.11
+          path: legacy/build/libs/customenchants-mc1.21-1.21.11-1.0.0.jar
+
+  modern:
+    name: modern (${{ matrix.mc }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { mc: "26.1", api: "0.144.3+26.1", upload: true }
+          - { mc: "26.3", api: "0.162.0+26.3", upload: false }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 9.5.1
+      - run: gradle -p modern build -Pminecraft_version=${{ matrix.mc }} -Pfabric_api_version=${{ matrix.api }}
+      - if: ${{ matrix.upload }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: customenchants-mc26.1-26.3
+          path: modern/build/libs/customenchants-mc26.1-26.3-1.0.0.jar

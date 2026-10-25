@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "cenchants",
+  "version": "${version}",
+  "name": "Custom Enchants",
+  "description": "Новые зачарования для мечей: Вампиризм и Кровоизлияние.",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["cenchants.CustomEnchantsMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": ">=1.21 <=1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
