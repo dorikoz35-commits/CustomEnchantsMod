@@ -3,7 +3,7 @@
   "id": "cenchants",
   "version": "${version}",
   "name": "Custom Enchants",
-  "description": "Новые зачарования для мечей: Вампиризм и Кровоизлияние.",
+  "description": "Новые зачарования: Вампиризм и Пустотник.",
   "environment": "*",
   "entrypoints": {
     "main": ["cenchants.CustomEnchantsMod"]

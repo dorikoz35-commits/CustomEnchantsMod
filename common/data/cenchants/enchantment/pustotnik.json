@@ -1,0 +1,21 @@
+{
+  "description": {"text": "Пустотник"},
+  "supported_items": ["minecraft:elytra", "minecraft:leather_chestplate", "minecraft:chainmail_chestplate", "minecraft:iron_chestplate", "minecraft:golden_chestplate", "minecraft:diamond_chestplate", "minecraft:netherite_chestplate"],
+  "weight": 1,
+  "max_level": 5,
+  "min_cost": {"base": 15, "per_level_above_first": 10},
+  "max_cost": {"base": 45, "per_level_above_first": 10},
+  "anvil_cost": 8,
+  "slots": ["chest"],
+  "effects": {
+    "minecraft:damage_protection": [
+      {
+        "effect": {"type": "minecraft:add", "value": {"type": "minecraft:lookup", "values": [5.0, 10.0, 15.0, 20.0], "fallback": 0.0}},
+        "requirements": {
+          "condition": "minecraft:damage_source_properties",
+          "predicate": {"tags": [{"id": "minecraft:bypasses_invulnerability", "expected": true}]}
+        }
+      }
+    ]
+  }
+}

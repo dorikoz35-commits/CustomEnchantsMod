@@ -1,6 +1,6 @@
 {
   "description": {"text": "Вампиризм"},
-  "supported_items": "#minecraft:enchantable/sword",
+  "supported_items": "#minecraft:swords",
   "weight": 2,
   "max_level": 3,
   "min_cost": {"base": 10, "per_level_above_first": 10},
